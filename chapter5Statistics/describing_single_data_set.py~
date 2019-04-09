@@ -1,0 +1,58 @@
+from collections import Counter
+
+num_friends = [100,49,41,40,25]
+num_points = len(num_friends)
+largest_value = max(num_friends)
+smallest_value = min(num_friends)
+sorted_values = sorted(num_friends)
+
+
+## Central tendencies
+def mean(v):
+    """ calculate the mean of all values in a vector """
+    return sum(v)/len(v)
+
+def median(v):
+    """ calculate median of a value v """
+    n = len(v)
+    sorted_v = sorted(v)
+    midpoint = n//2
+
+    if(n % 2 == 1):
+        return sorted_v[midpoint]
+    else:
+        lo = midpoint-1
+        hi = midpoint+1
+        return (sorted_v[hi] + sorted_v[lo])/2
+
+
+def quantile(x,p):
+    """ return p% from x """
+    p_index = int(p*len(x))
+    return sorted(x)[p_index]
+
+def mode(x):
+    """ return the most common value in x """
+    counts = Counter(x)
+    max_counts = max(counts.values())
+    return [x_i for x_i, count in counts.items() if count == max_counts]
+
+
+
+### Dispersion
+def data_range(x):
+    return max(x)-min(x)
+
+
+
+## Examples for central tendencies
+#print(median(num_friends))
+#print(quantile(num_friends,0.10))
+#print(mode(num_friends))
+
+## Examples for dispersion
+print(data_range(num_friends))
+
+
+
+

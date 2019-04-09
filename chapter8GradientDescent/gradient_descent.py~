@@ -1,0 +1,19 @@
+import functools
+
+def difference_quotient(f,x,h):
+    return (f(x+h)-f(x))/h
+
+def square(x):
+    return x*x
+
+def derivative_sq(x):
+    return 2*x
+
+derivative_estimate = partial(difference_quotient,square,h=0.00001)
+
+import matplotlib.pyplot as plt
+x = range(-10,10)
+plt.plot(x, map(derivative_sq,x),'rx',label='Actual')
+plt.plot(x, map(derivative_estimate,x), 'b+', label='Estimate')
+plt.legend(loc=9)
+plt.show()
